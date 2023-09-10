@@ -1,2 +1,2 @@
 # note_of_cs
-A computer science note of a freshman in soft engineering in Nanjing University.
+这是一篇由南京大学软件工程大一新生记录的他学习cs的笔记
