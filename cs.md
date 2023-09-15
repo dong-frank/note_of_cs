@@ -11,10 +11,12 @@
     - [基础语法](#基础语法)
   - [eg:](#eg)
     - [进阶语法](#进阶语法)
+  - [cpl](#cpl)
+    - [第一节课](#第一节课)
 
 ## 插件
 1. caps2ctrl
-
+2. tabnine
 ---
 
 ## Powershell&Windows terminal
@@ -157,18 +159,23 @@ cat id_rsa.pub  //显示公钥
 3. 将本地库上传至GitHub
 - GitHub网页选择[create a new repository]
 - 将[push an existing repository from the command line]中的三条命令一次在git bash 中执行
+```
+git remote add origin git@github.com:dong-frank/1.git
+git branch -M main
+git push -u origin main
+```
 
-4. 克隆仓库到本地
+1. 克隆仓库到本地
 ```
 git clone 复制ssh
 ```
 
-5. 拉取远程仓库数据并合并到当前分支
+1. 拉取远程仓库数据并合并到当前分支
 ```
 git pull  //= git fetch + git merge
 ```
 
-6. 推送本地仓库的commit记录到远程仓库
+1. 推送本地仓库的commit记录到远程仓库
 ```
 git push
 ```
@@ -314,3 +321,17 @@ eg:~~~误~~~
 
 - [ ] 学习HTML
 
+
+
+---
+## cpl
+
+### 第一节课
+**示例一 [hello world]()"D:\Freshman\cpl\example_in_class\hello_world\hello.c"**
+
+==语言只是一种手段一种工具==
+**先用自然语言编程**
+*不成文规定：一行代码在78到80字符*
+[手册](https://en.cppreference.com/w/c)
+
+**示例二 [guessing number]()"D:\Freshman\cpl\example_in_class\guessing_nimber\main.c"**
