@@ -13,6 +13,8 @@
     - [进阶语法](#进阶语法)
   - [cpl](#cpl)
     - [第一节课](#第一节课)
+      - [代码示例](#代码示例)
+      - [cmake](#cmake)
 
 ## 插件
 1. caps2ctrl
@@ -327,6 +329,7 @@ eg:~~~误~~~
 ## cpl
 
 ### 第一节课
+#### 代码示例
 **示例一 [hello world]()"D:\Freshman\cpl\example_in_class\hello_world\hello.c"**
 
 ==语言只是一种手段一种工具==
@@ -335,3 +338,17 @@ eg:~~~误~~~
 [手册](https://en.cppreference.com/w/c)
 
 **示例二 [guessing number]()"D:\Freshman\cpl\example_in_class\guessing_nimber\main.c"**
+
+#### cmake
+```
+cmake_minimum_required(VERSION 3.26) //声明最低版本
+project(guessing_nimber C) //项目名称
+
+set(CMAKE_C_STANDARD 17) //定义c标准为c17
+
+add_executable(guessing_nimber main.c) //生成可执行文件(等价于gcc guessing_nimber.c -o main.c)
+
+```
+
+一个项目下可以创建多个c源代码文件
+需要在add_executable后手动加入
