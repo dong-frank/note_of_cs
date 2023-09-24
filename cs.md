@@ -15,6 +15,7 @@
     - [第一节课](#第一节课)
       - [代码示例](#代码示例)
       - [cmake](#cmake)
+    - [第二节课](#第二节课)
 
 ## 插件
 1. caps2ctrl
@@ -166,6 +167,9 @@ git remote add origin git@github.com:dong-frank/1.git
 git branch -M main
 git push -u origin main
 ```
+```
+git pull origin master –-allow-unrelated-histories
+```
 
 1. 克隆仓库到本地
 ```
@@ -311,6 +315,11 @@ eg:
 ```
 eg:~~~误~~~
 
+20. 空格
+```
+&nbsp;
+```
+
 ---
 
 ### 进阶语法
@@ -352,3 +361,56 @@ add_executable(guessing_nimber main.c) //生成可执行文件(等价于gcc gues
 
 一个项目下可以创建多个c源代码文件
 需要在add_executable后手动加入
+
+
+
+### 第二节课
+**variables,types,I/O**
+Program = input + data + operations + output
+
+1. **variables 变量**
+2. **data types 数据类型**
+3. **operations**
+
+radius refers to a location(&radius)in memory
+地址
+& 取地址运算符
+==变量的值和地址的值是两回事==
+
+**示例一**
+计算圆形的周长和面积
+
+- 尽量不要出现magic_number(定义常数)
+
+- 重构可一次改变所有变量的名称
+
+- 标识符不要以 "_" 开头(保留字符)
+- 变量要有意义,尽量用英文
+
+**示例二**
+计算球的表面积和体积
+
+**示例三**
+为罗大佑创建admin
+
+- 解决编译器找不到 math.h 问题
+```
+target_link_libraries(admin m)
+```
+
+- alt + shift + enter 自动补充头文件
+
+- %%:输出一个%
+**Undefined Behavior**
+1. printf函数中前后不对应
+
+
+**示例四**
+- %s: 前导空白符忽略,直到有字符,并结束于下一个空白符之前
+- %c: 不会忽略前导空白符
+- scanf函数中的"space":用来消耗用户输入的空白符 ==一般情况慎用空格==
+- %d: 忽略前导空白符,直到寻找到一个整数并识别
+- %9s: 限制只能读入9个字符
+- scanf中的普通字符: 匹配并寻找其自身
+
+**Do Not use scanf**
