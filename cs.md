@@ -17,6 +17,8 @@
       - [cmake](#cmake)
     - [第二节课](#第二节课)
     - [第三节课](#第三节课)
+    - [第四节课](#第四节课)
+    - [第五节课](#第五节课)
 
 ## 插件
 1. caps2ctrl
@@ -496,3 +498,84 @@ for(初始化;条件(循环还要继续下去的条件);用作迭代的表达式
 - numbers[i] 当作变量使用
 - 初始化只作用在for循环内部(作用域)(c99)
 好处:节省变量名
+
+### 第四节课
+**for-a-while**
+*clion中调试for语句:见[b站视频](https://www.bilibili.com/list/watchlater?oid=789412272&bvid=BV1AC4y1d7KX&spm_id_from=333.1007.top_right_bar_window_view_later.content.click)*
+
+- wolframealpha
+**示例二**
+- break:跳出一层循环
+- 计算机中输入和输出是最慢的
+- c99之后在宏中定义了bool变量
+```
+#include <stdbool.h>
+```
+- 允许你bool变量的值非1/0
+==不要这样用==
+
+**示例三 二分查找**
+- 二分法分割已排序的数组
+- 时间复杂度从线性到lg(n)
+```
+while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (key > dict[mid]) {
+            low = mid + 1;
+        } else if (key < dict[mid]) {
+            high = mid - 1;
+        } else {
+            index = mid;
+            //break;
+            high = mid - 1;//找最左边的k
+        }
+    }
+```
+==熟读并背诵==
+
+**示例四**
+- do while:先做一次循环再判断条件是否成立
+==while 后面有一个分号==
+*一般比较少用*
+
+**示例五 排序算法**
+选择排序
+1. 从数组中选出最小值（selection）
+2. 和数组的第一个位置交换
+3. 剩下的数组再找出最小值
+4. 再和剩下的数组的第一个位置交换
+5. 迭代
+
+- scanf的返回值
+1. input failure:EOF (end of file,通常为-1)
+数据流已经坏了读不出数据了
+2. number of matched items:返回之前成功匹配多少个数据(肯定大于等于0)
+数据类型不匹配
+- 换行将缓冲区的内容发送给scanf
+- linux系统下 ctrl+d 强制将缓冲区内容发送给scanf
+若缓冲区为空,则会发送EOF信号 
+- 输入重定向:不再从控制台(标准输入设备)由用户输入
+可以从文件输入
+- 输出重定向:不再从控制台(标准输出设备)输出
+
+### 第五节课
+**多维数组**
+
+**示例一**
+生命游戏
+- 二维数组的初始化
+1. 按行初始化,每一行当作一个一维数组
+2. 按下标初始化
+3. 当作一维数组初始化,先填第一行再填第二行(本质上是一维数组)
+- Sleep(1000)
+<synchapi.h>
+- system("cls")
+<stdlib.h>
+
+**示例二**
+merge
+- 当出现一个问题,他的规模变了但本质不变
+==考虑循环==
+- 根据这个子任务可以完成数组的排序
+==合并排序==
