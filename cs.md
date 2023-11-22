@@ -19,6 +19,9 @@
     - [第三节课](#第三节课)
     - [第四节课](#第四节课)
     - [第五节课](#第五节课)
+    - [第六节课](#第六节课)
+    - [第六节课](#第六节课-1)
+    - [第七节课](#第七节课)
 
 ## 插件
 1. caps2ctrl
@@ -404,12 +407,13 @@ target_link_libraries(admin m)
 - alt + shift + enter 自动补充头文件
 
 - %%:输出一个%
+
 **Undefined Behavior**
 1. printf函数中前后不对应
 
 
 **示例四**
-- %s: 前导空白符忽略,直到有字符,并结束于下一个空白符之前
+- %s: 前导空白符忽略,直到有字符,并结束于下一个空白符之前 ==输入字符串==
 - %c: 不会忽略前导空白符
 - scanf函数中的"space":用来消耗用户输入的空白符 ==一般情况慎用空格==
 - %d: 忽略前导空白符,直到寻找到一个整数并识别
@@ -425,6 +429,7 @@ target_link_libraries(admin m)
 2. for statement
 3. logical expressions
 4. array
+
 **if statement**
 - 代码风格
 空格,花括号
@@ -504,6 +509,7 @@ for(初始化;条件(循环还要继续下去的条件);用作迭代的表达式
 *clion中调试for语句:见[b站视频](https://www.bilibili.com/list/watchlater?oid=789412272&bvid=BV1AC4y1d7KX&spm_id_from=333.1007.top_right_bar_window_view_later.content.click)*
 
 - wolframealpha
+
 **示例二**
 - break:跳出一层循环
 - 计算机中输入和输出是最慢的
@@ -515,6 +521,8 @@ for(初始化;条件(循环还要继续下去的条件);用作迭代的表达式
 ==不要这样用==
 
 **示例三 二分查找**
+
+[理解二分查找的边界条件](https://blog.csdn.net/qq_45978890/article/details/116094046)
 - 二分法分割已排序的数组
 - 时间复杂度从线性到lg(n)
 ```
@@ -534,10 +542,49 @@ while (low <= high) {
 ```
 ==熟读并背诵==
 
+==边界条件==
+二分法最重要的两个点
+1. while循环中right和left的关系 left<= right / left< right
+2. 迭代过程中middle和right的关系 right=middl-1 / right=middle
+
+1. 左闭右闭
+```
+while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (key > dict[mid]) {
+            low = mid + 1;
+        } else if (key < dict[mid]) {
+            high = mid - 1;
+        } else {
+            index = mid;
+            //break;
+            high = mid - 1;//找最左边的k
+        }
+    }
+```
+2. 左闭右开
+```
+while (low < high) {
+        int mid = (low + high) / 2;
+
+        if (key > dict[mid]) {
+            low = mid + 1;
+        } else if (key < dict[mid]) {
+            high = mid;
+        } else {
+            index = mid;
+            //break;
+            high = mid - 1;//找最左边的k
+        }
+    }
+```
+
 **示例四**
 - do while:先做一次循环再判断条件是否成立
 ==while 后面有一个分号==
 *一般比较少用*
+
 
 **示例五 排序算法**
 选择排序
@@ -579,3 +626,164 @@ merge
 ==考虑循环==
 - 根据这个子任务可以完成数组的排序
 ==合并排序==
+
+### 第六节课
+**函数**
+
+***overview***
+- 函数定义
+- 函数申明
+- 数组作为函数参数
+- pass by value 传值
+
+---
+- 函数:
+1. 实现封装
+将实现细节封装进函数中(main函数中不关心的)
+从而降低认知复杂度
+1. 代码复用
+- 定义一个函数
+1. 返回值的类型
+2. 函数名
+3. 函数接受的参数(参数类型+参数名)
+形式参数,同样为块作用域
+1. 函数体
+```
+bool IsLeapYear (int year){ //year:形式参数(占位符)
+    bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    return leap;
+}
+```
+***caller 调用者***
+***callee 被调用者***
+- 函数声明
+在写函数体之前显式地写出函数的返回值
+将其具体实现(定义)写在后面
+- 局部变量
+在函数体内定义的变量
+- 块作用域
+局部变量的块作用域
+- return 语句
+- 数组作为函数参数
+不用给定数组大小(==形参是这个数组的第一个元素的地址==)
+但需要再给定一个表示数组大小的参数(防止数组越界)
+数组前加const 表示数组内元素不可被修改
+- 全局变量
+文件作用域:从定义开始到整个文件结束
+==基本原则:作用域越小越安全(尽量不要用全局变量)==
+- 每当定义一个变量时要给他一个有意义的初始值
+- 字符串作为参数时不用给定表示数组大小的参数
+可以用strlen给出
+- pass by value
+传值:由实参传给形参的只是一份拷贝内容,形参的改变并不会影响实参
+若传的为地址,则形参可以跟据地址改变实参
+- 二维数组作为形参
+==数组的首地址+数组的类型 即可得到数组中任意元素的地址==
+第一个中括号空着
+第二个中括号不能空
+首地址+ 1 * (size of a row) *[col *(size of int)] + 2 * (size of int)=address of a[1][2]
+
+### 第六节课
+**递归(递归函数)**==最困难的部分==
+ A function that calls itself
+ 甚至可以在main函数中调用main函数
+一种思考方式 
+1. **Thinking like a Computer Scientist**
+Solving a task by the first solving its smaller subtasks.
+先向下推导找子问题直到找到一个base case
+再由base case的解不断向上传播直到原问题求出解
+主要是三个问题
+- 子任务是什么 *****
+- 由子任务的解怎么得到原始任务的解 ***
+- 最小任务(base case)是什么 *
+
+***It will be a looooong way to go to master RECURSION!!!***
+
+2. **Thinking like a Computer**
+非递归函数是怎么调用的?
+- 调用时会分配栈帧(stack frame),控制权给被调用的函数
+知道变量的名称和类型但不知道具体值
+- 调用结束后数据返回给调用者,控制权归还给调用者
+*局部变量/全局变量 (作用域角度)
+自动变量/静态变量 (生命周期角度)*
+自动变量:会随着栈帧的消失而消失
+静态变量:只有当程序结束时才会消失
+递归函数是怎么调用的?
+- 每次递归调用函数本身都会新创建一个栈帧
+- 调用结束后返回给调用者,控制权归还给调用者调用函数的地方
+
+```
+int Min(const int nums[], int len) {
+    if (len == 1) {
+        return nums[0]; //最小问题的解
+    }
+
+    int partial_min = Min(nums, len - 1);//子问题
+
+    return partial_min < nums[len - 1] ? partial_min : nums[len - 1];//由子问题得到原始问题
+}
+```
+得到数组的长度
+```
+sizeof numbers / sizeof(int);
+sizeof numbers / sizeof numbers[0];
+```
+
+### 第七节课
+
+合并排序==递归版==
+子问题:merge sort(n/2) 分为两个子问题
+由子问题解决原始问题:merge 两个子问题
+注意递归函数的参数:***要能区分每个子问题***,单纯的数组长度不可以表示
+
+tips:文档注释
+```
+/**
+```
+
+数据类型
+int char double bool []
+
+整型类型
+- short (int)
+- int 
+- long (int)
+- long long (int)
+***long int 不一定比int 大 直接用long long int***
+
+unsigned:无符号
+输出用 %zu
+==慎用==
+
+typedef:类型定义
+```
+typedef unsigned long long int size_t;
+
+typedef long long time_t;
+```
+
+char不会默认有无符号
+
+有符号整数的溢出:UB
+无符号整数没有溢出:回绕 
+UINT_MAX+1=0
+
+算术表达式\逻辑表达式 (先做整型提升)
+函数调用
+==隐式类型转换(危险)==
+
+显式类型转换
+(type) expression
+```
+pi - (int) pi;
+```
+
+浮点类型
+1. float
+```
+float pi 3.14F
+```
+
+比较浮点数的大小不能直接看是否相等
+
+==浮点数的运算非常难==
